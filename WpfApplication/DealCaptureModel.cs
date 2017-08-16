@@ -2,9 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace WpfApplication
 {
@@ -27,30 +25,6 @@ namespace WpfApplication
         public IReadOnlyList<Stock> GetStocks()
         {
             return this.stocks.ToList();
-            //var allStocks = this.stocks.ToList();
-
-            //if(allStocks.Count == 0)
-            //{
-            //    return Enumerable.Empty<WeightedStock>();
-            //}
-            //else
-            //{
-            //    var totalMarketValue = allStocks.Sum(stock => Math.Abs(stock.MarketValue));
-            //    if(allStocks.Count == 1)
-            //    {
-            //        return new[] { new WeightedStock(allStocks.Single(), CalculateWeight(allStocks.Single().MarketValue, totalMarketValue)) };
-            //    }
-            //    else
-            //    {
-            //        var lazyResult = allStocks
-            //            .Take(allStocks.Count - 1)
-            //            .Select(stock => new WeightedStock(stock, CalculateWeight(stock.MarketValue, totalMarketValue)))
-            //            .Concat(new[] { new WeightedStock(
-            //                allStocks.Last(),
-            //                100.0m - allStocks.Take(allStocks.Count - 1).Sum(stock => CalculateWeight(stock.MarketValue, totalMarketValue))) });
-            //        return lazyResult;
-            //    }
-            //}
         }
 
         public void AddEquity(decimal? price, decimal? quantity)
@@ -107,7 +81,7 @@ namespace WpfApplication
             public string StockName { get; }
             public decimal Price { get; }
             public decimal Quantity { get; }
-            public decimal MarketValue { get; }// { return this.Price * this.Quantity; } }
+            public decimal MarketValue { get; }
             public decimal TransactionCost { get; }
 
             public Stock(StockType stockType, string stockName, decimal price, decimal quantity, decimal marketValue, decimal transactionCost)
@@ -120,20 +94,6 @@ namespace WpfApplication
                 this.TransactionCost = transactionCost;
             }
         }
-
-        //public class WeightedStock
-        //{
-        //    public Stock Stock { get; }
-        //    public decimal Weight { get; }
-
-        //    public WeightedStock(Stock stock, decimal weight)
-        //    {
-        //        if (stock == null) throw new ArgumentNullException(nameof(stock));
-
-        //        this.Stock = stock;
-        //        this.Weight = weight;
-        //    }
-        //}
 
         public interface IMarketValueCalculator
         {

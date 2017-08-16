@@ -320,13 +320,11 @@ namespace WpfApplication
 
         public class WeightedStockViewModel
         {
-            //public DealCaptureModel.Stock Stock { get; }
-
             public DealCaptureModel.StockType StockType { get; }
             public string StockName { get; }
             public string Price { get; }
             public string Quantity { get; }
-            public string MarketValue { get; }// { return this.Price * this.Quantity; } }
+            public string MarketValue { get; }
             public string TransactionCost { get; }
             public string Weight { get; }
             public bool HighAwareness { get; }
